@@ -6,7 +6,9 @@
 <body><main><p>Conectando ao Voss…</p></main>
 <script>
   // Ponte do login da Meta: o Facebook só aceita voltar para um endereço público (https);
-  // esta página devolve na hora para o Voss rodando no computador da empresa.
-  location.replace('http://localhost:3333/auth/callback' + location.search);
+  // esta página devolve na hora para o Voss: o do servidor (state começa com "s.") ou o do Mac.
+  var s = new URLSearchParams(location.search).get('state') || '';
+  var base = s.indexOf('s.') === 0 ? 'https://voss.157-230-177-157.sslip.io' : 'http://localhost:3333';
+  location.replace(base + '/auth/callback' + location.search);
 </script>
 </body></html>
